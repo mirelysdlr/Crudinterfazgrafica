@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36301.6 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "joyeriaapi", "joyeriaapi.csproj", "{0C94FAB0-B027-4541-BB14-87ED43F871C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "joyeriafront", "..\joyeriafront\joyeriafront.csproj", "{4A84AE9B-0C5D-4E85-A367-4B93DF8FD834}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C94FAB0-B027-4541-BB14-87ED43F871C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C94FAB0-B027-4541-BB14-87ED43F871C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C94FAB0-B027-4541-BB14-87ED43F871C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C94FAB0-B027-4541-BB14-87ED43F871C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A84AE9B-0C5D-4E85-A367-4B93DF8FD834}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A84AE9B-0C5D-4E85-A367-4B93DF8FD834}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A84AE9B-0C5D-4E85-A367-4B93DF8FD834}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A84AE9B-0C5D-4E85-A367-4B93DF8FD834}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BD813F57-2C00-44CF-81E5-3DAA57194D6A}
+	EndGlobalSection
+EndGlobal

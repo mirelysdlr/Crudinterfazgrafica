@@ -1,0 +1,118 @@
+﻿@page "/joyas"
+@inject IJoyaService.cs joyaService
+
+<h3>Listado de Joyas</h3>
+
+@if (joyas == null)
+{
+    <p><em>Cargando...</em></p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Imagen</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var joya in joyas)
+            {
+                <tr>
+                    <td>@joya.Nombre</td>
+                    <td>@joya.Descripcion</td>
+                    <td>@joya.Precio</td>
+                    <td>@joya.Stock</td>
+                    <td><img src="@joya.ImagenUrl" width="50" /></td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" @onclick="() => Editar(joya)">Editar</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => Eliminar(joya.Id)">Eliminar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<h4>@(editando ? "Editar Joya" : "Nueva Joya")</h4>
+
+<div class="mb-3">
+    <input class="form-control" placeholder="Nombre" @bind="nuevaJoya.Nombre" />
+</div>
+<div class="mb-3">
+    <input class="form-control" placeholder="Descripción" @bind="nuevaJoya.Descripcion" />
+</div>
+<div class="mb-3">
+    <input type="number" class="form-control" placeholder="Precio" @bind="nuevaJoya.Precio" />
+</div>
+<div class="mb-3">
+    <input type="number" class="form-control" placeholder="Stock" @bind="nuevaJoya.Stock" />
+</div>
+<div class="mb-3">
+    <input class="form-control" placeholder="URL Imagen" @bind="nuevaJoya.ImagenUrl" />
+</div>
+<button class="btn btn-primary" @onclick="Guardar">Guardar</button>
+@if (editando)
+{
+    <button class="btn btn-secondary" @onclick="Cancelar">Cancelar</button>
+}
+
+@code {
+    private List<Joya>? joyas;
+    private Joya nuevaJoya = new();
+    private bool editando = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CargarJoyas();
+    }
+
+    private async Task CargarJoyas()
+    {
+        joyas = await joyaService.GetAll();
+    }
+
+    private async Task Guardar()
+    {
+        if (editando)
+            await joyaService.Update(nuevaJoya);
+        else
+            await joyaService.Create(nuevaJoya);
+
+        nuevaJoya = new Joya();
+        editando = false;
+        await CargarJoyas();
+    }
+
+    private void Editar(Joya joya)
+    {
+        nuevaJoya = new Joya
+        {
+            Id = joya.Id,
+            Nombre = joya.Nombre,
+            Descripcion = joya.Descripcion,
+            Precio = joya.Precio,
+            Stock = joya.Stock,
+            ImagenUrl = joya.ImagenUrl
+        };
+        editando = true;
+    }
+
+    private async Task Eliminar(int id)
+    {
+        await joyaService.Delete(id);
+        await CargarJoyas();
+    }
+
+    private void Cancelar()
+    {
+        nuevaJoya = new Joya();
+        editando = false;
+    }
+}
+
